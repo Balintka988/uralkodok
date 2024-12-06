@@ -1,31 +1,40 @@
-//Az oszlopok fejléceinek definiálása
-const headercellName1 = "Uralkodo"; // Az első oszlop fejléce
-const headercellName2 = "Esemény"; // A második oszlop fejléce
-const headercellName3 = "Évszám"; // A harmadik oszlop fejléce
-
-//Az uralkodók neveinek definiálása
-const uralkodo1 = "I. István"; // Az első uralkodó neve
-const uralkodo2 = "IV. Béla"; // A második uralkodó neve
-const uralkodo3 = "Mátyás Király"; // A harmadik uralkodó neve
-const uralkodo4 = "II. Rákóczi Ferenc"; // A negyedik uralkodó neve
-
-//Az események definiálása
-const esemeny1 = "Koronázás"; // Az első esemény neve
-const esemeny2 = "Pannonhalmi apátság megalapítása"; // A második esemény neve
-const esemeny3 = "tatárjárás"; // A harmadik esemény neve
-const esemeny4 = "Bécs elfoglalása"; // A negyedik esemény neve
-const esemeny5 = "Kenyérmezei csata"; // Az ötödik esemény neve
-const esemeny6 = "A szabadságharc kezdete"; // A hatodik esemény neve
-const esemeny7 = "A szabadságharc vége"; // A hetedik esemény neve
-
-//Az évszámok definiálása
-const evszam1 = "1000"; // Az első évszám
-const evszam2 = "1001"; // A második évszám
-const evszam3 = "1241-1242"; // A harmadik évszám
-const evszam4 = "1485"; // A negyedik évszám
-const evszam5 = "1479"; // Az ötödik évszám
-const evszam6 = "1703"; // A hatodik évszám
-const evszam7 = "1711"; // A hetedik évszám
+const headerObj = {//itt hozom létre a header objektumot 
+    uralkodo : "Uralkodo",//ertekadas a headerObj uralkodo tulajdonsaganak
+    esemeny: "Esemény",//ertekadas a headerObj esemeny tulajdonsaganak
+    evszam: "Évszám"//ertekadas a headerObj evszam tulajdonsaganak
+};
+const firstRowElement = {//itt hozom létre a firstRowElement objektumot 
+    uralkodo: "I.István",//ertekadas a firstRowElement uralkodo tulajdonsaganak
+    esemeny: "Koronázás",//ertekadas a firstRowElement esemeny tulajdonsaganak
+    evszam: "1000"//ertekadas a firstRowElement evszam tulajdonsaganak
+}
+const secondRowElement = {//itt hozom létre a secondRowElement objektumot 
+    esemeny: "Pannonhalmi apátság megalapítása	",//ertekadas a secondRowElement esemeny tulajdonsaganak
+    evszam: "1001"//ertekadas a secondRowElement evszam tulajdonsaganak
+}
+const thirdRowElement = {//itt hozom létre a thirdRowElement objektumot 
+    uralkodo: "IV. Béla",//ertekadas a thirdRowElement uralkodo tulajdonsaganak
+    esemeny: "tatárjárás",//ertekadas a thirdRowElement esemeny tulajdonsaganak
+    evszam: "1241-1242"//ertekadas a thirdRowElement evszam tulajdonsaganak
+}
+const fourthRowElement = {//itt hozom létre a fourthRowElement objektumot 
+    uralkodo: "Mátyás király",//ertekadas a fourthRowElement uralkodo tulajdonsaganak
+    esemeny: "Bécs elfoglalása",//ertekadas a fourthRowElement esemeny tulajdonsaganak
+    evszam: "1485"//ertekadas a fourthRowElement evszam tulajdonsaganak
+}
+const fifthRowElement = {//itt hozom létre a fifthRowElement objektumot 
+    esemeny: "Kenyérmezei csata	",//ertekadas a fifthRowElement esemeny tulajdonsaganak
+    evszam: "1479"//ertekadas a fifthRowElement evszam tulajdonsaganak
+}
+const sixthRowElement = {//itt hozom létre a sixthRowElement objektumot 
+    uralkodo: "II. Rákóczi Ferenc",//ertekadas a sixthRowElement uralkodo tulajdonsaganak
+    esemeny: "A szabadságharc kezdete",//ertekadas a sixthRowElement esemeny tulajdonsaganak
+    evszam: "1703"//ertekadas a sixthRowElement evszam tulajdonsaganak
+}
+const seventhRowElement = {//itt hozom létre a seventhRowElement objektumot 
+    esemeny: "A szabadságharc vége",//ertekadas a seventhRowElement esemeny tulajdonsaganak
+    evszam: "1711"//ertekadas a seventhRowElement evszam tulajdonsaganak
+}
 
 //Itt hozzuk létre a táblázatot
 const table = document.createElement('table');//létrehozok egy table elemet, ami majd a tablazatomat fogja tartalmazni
@@ -60,17 +69,17 @@ thead.appendChild(headerRow);//hozzadaom a theadre
 
 //Az első cella létrehozása a fejléc sorában
 const headerCell = document.createElement('th');//itt egy th elemet hozok letre
-headerCell.innerHTML = headercellName1;//A fejlec elso cellajanak feltoltese kulso valtozobol
+headerCell.innerHTML = headerObj.uralkodo;//a cellaban a headerObj uralkodo tulajdonsaganak lesz megjelenitve az erteke
 headerRow.appendChild(headerCell);//a headerRow-hoz (fejléc sorához) adom hozzá
 
 //A második cella létrehozása a fejléc sorában
 const headerCell2 = document.createElement('th');//itt egy th elemet hozok letre
-headerCell2.innerHTML = headercellName2;//A fejlec elso cellajanak feltoltese kulso valtozobol
+headerCell2.innerHTML = headerObj.esemeny;//a cellaban a headerObj esemeny tulajdonsaganak lesz megjelenitve az erteke
 headerRow.appendChild(headerCell2);//a headerRow-hoz (fejléc sorához) adom hozzá
 
 //A harmadik cella létrehozása a fejléc sorában
 const headerCell3 = document.createElement('th');//itt egy th elemet hozok letre
-headerCell3.innerHTML = headercellName3;//A fejlec elso cellajanak feltoltese kulso valtozobol
+headerCell3.innerHTML = headerObj.evszam;//a cellaban a headerObj evszam tulajdonsaganak lesz megjelenitve az erteke
 headerRow.appendChild(headerCell3);//a headerRow-hoz (fejléc sorához) adom hozzá
 
 //Itt hozzuk létre a táblázat törzsét
@@ -83,18 +92,18 @@ tbody.appendChild(tbodyRow1);//hozzaadom a tbody-hoz
 
 //A sor első cellájának létrehozása
 const tbodyRow1Cell1 = document.createElement('td');//letrehozok egy td elemet
-tbodyRow1Cell1.innerHTML = uralkodo1;//Uralkodo nevét itt adjuk meg
+tbodyRow1Cell1.innerHTML = firstRowElement.uralkodo;//a cellaban a firstRowElement uralkodo tulajdonsaganak lesz megjelenitve az erteke
 tbodyRow1.appendChild(tbodyRow1Cell1);//hozzáadja az első sorhoz
 tbodyRow1Cell1.rowSpan = "2"//Itt adjuk meg hogy hány sort egyesítsen 
 
 //A sor második cellájának létrehozása
 const tbodyRow1Cell2 = document.createElement('td');//letrehozok egy td elemet
-tbodyRow1Cell2.innerHTML = esemeny1;//a cella tartalmát beállítom egy külső változóból ez esetben az esemenyt
+tbodyRow1Cell2.innerHTML = firstRowElement.esemeny;//a cellaban a firstRowElement esemeny tulajdonsaganak lesz megjelenitve az erteke
 tbodyRow1.appendChild(tbodyRow1Cell2);//hozzáadjuk a cellát a sorhoz 
 
 //A sor harmadik cellájának létrehozása
 const tbodyRow1Cell3 = document.createElement('td');//letrehozok egy td elemet
-tbodyRow1Cell3.innerHTML = evszam1;//a cella tartalmát beállítom egy külső változóból ebben az esetben evszamot
+tbodyRow1Cell3.innerHTML = firstRowElement.evszam;//a cellaban a firstRowElement evszam tulajdonsaganak lesz megjelenitve az erteke
 tbodyRow1.appendChild(tbodyRow1Cell3);//hozzáadjuk a cellát a sorhoz 
 
 //Új sor létrehozása
@@ -102,12 +111,12 @@ const tbodyRow2 = document.createElement('tr');//itt egy uj sort adok hozza egy 
 tbody.appendChild(tbodyRow2);//hozzáadjuk a sort a tbodyhoz (törzsünkhöz)
 //A sor első cellájának létrehozása
 const tbodyRow2Cell1 = document.createElement('td');//letrehozok egy td elemet
-tbodyRow2Cell1.innerHTML = esemeny2;//a cella tartalmát beállítom egy külső változóból
+tbodyRow2Cell1.innerHTML = secondRowElement.esemeny;//a cellaban a secondRowElement esemeny tulajdonsaganak lesz megjelenitve az erteke
 tbodyRow2.appendChild(tbodyRow2Cell1);//hozzáadjuk a cellát a sorhoz 
 
 //A sor második cellájának létrehozása
 const tbodyRow2Cell2 = document.createElement('td');//letrehozok egy td elemet
-tbodyRow2Cell2.innerHTML = evszam2;//a cella tartalmát beállítom egy külső változóból
+tbodyRow2Cell2.innerHTML = secondRowElement.evszam;//a cellaban a secondRowElement evszam tulajdonsaganak lesz megjelenitve az erteke
 tbodyRow2.appendChild(tbodyRow2Cell2);//hozzáadjuk a cellát a sorhoz 
 
 //új sort hozunk létre
@@ -116,17 +125,17 @@ tbody.appendChild(tbodyRow3);//hozzáadjuk a sort a törzsönkhüz
 
 //A sor első cellájának létrehozása
 const tbodyRow3Cell1 = document.createElement('td');//letrehozok egy td elemet
-tbodyRow3Cell1.innerHTML = uralkodo2;//a cella tartalmát beállítom egy külső változóból
+tbodyRow3Cell1.innerHTML = thirdRowElement.uralkodo;//a cellaban a thirdRowElement uralkodo tulajdonsaganak lesz megjelenitve az erteke
 tbodyRow3.appendChild(tbodyRow3Cell1);//hozzáadjuk a cellát a sorhoz 
 
 //A sor második cellájának létrehozása
 const tbodyRow3Cell2 = document.createElement('td');//letrehozok egy td elemet
-tbodyRow3Cell2.innerHTML = esemeny3;//a cella tartalmát beállítom egy külső változóból
+tbodyRow3Cell2.innerHTML = thirdRowElement.esemeny;//a cellaban a thirdRowElement esemeny tulajdonsaganak lesz megjelenitve az erteke
 tbodyRow3.appendChild(tbodyRow3Cell2);//hozzáadjuk a cellát a sorhoz 
 
 //A sor harmadik cellájának létrehozása
 const tbodyRow3Cell3 = document.createElement('td');//letrehozok egy td elemet
-tbodyRow3Cell3.innerHTML = evszam3;//a cella tartalmát beállítom egy külső változóból
+tbodyRow3Cell3.innerHTML = thirdRowElement.evszam;//a cellaban a thirdRowElement evszam tulajdonsaganak lesz megjelenitve az erteke
 tbodyRow3.appendChild(tbodyRow3Cell3);//hozzáadjuk a cellát a sorhoz 
 
 //új sor létrehozása
@@ -135,18 +144,18 @@ tbody.appendChild(tbodyRow4);//hozzáadjuk a sort a törzsönkhüz
 
 //A sor első cellájának létrehozása rowspannal
 const tbodyRow4Cell1 = document.createElement('td');//letrehozok egy td elemet
-tbodyRow4Cell1.innerHTML = uralkodo3;//a cella tartalmát beállítom egy külső változóból
+tbodyRow4Cell1.innerHTML = fourthRowElement.uralkodo;//a cellaban a fourthRowElement uralkodo tulajdonsaganak lesz megjelenitve az erteke
 tbodyRow4.appendChild(tbodyRow4Cell1);//hozzáadjuk a cellát a sorhoz 
 tbodyRow4Cell1.rowSpan = "2";//Itt adjuk meg hogy hány sort egyesítsen
 
 //A sor második cellájának létrehozása
 const tbodyRow4Cell2 = document.createElement('td');//letrehozok egy td elemet
-tbodyRow4Cell2.innerHTML = esemeny4;//a cella tartalmát beállítom egy külső változóból
+tbodyRow4Cell2.innerHTML = fourthRowElement.esemeny;//a cellaban a fourthRowElement esemeny tulajdonsaganak lesz megjelenitve az erteke
 tbodyRow4.appendChild(tbodyRow4Cell2);//hozzáadjuk a cellát a sorhoz 
 
 //A sor harmadik cellájának létrehozása
 const tbodyRow4Cell3 = document.createElement('td');//letrehozok egy td elemet
-tbodyRow4Cell3.innerHTML = evszam4;//a cella tartalmát beállítom egy külső változóból
+tbodyRow4Cell3.innerHTML = fourthRowElement.evszam;//a cellaban a fourthRowElement evszam tulajdonsaganak lesz megjelenitve az erteke
 tbodyRow4.appendChild(tbodyRow4Cell3);//hozzáadjuk a cellát a sorhoz 
 
 //új sor létrehozása
@@ -155,12 +164,12 @@ tbody.appendChild(tbodyRow5);//hozzáadjuk a sort a törzsönkhüz
 
 //A sor első cellájának létrehozása
 const tbodyRow5Cell1 = document.createElement('td');//letrehozok egy td elemet
-tbodyRow5Cell1.innerHTML = esemeny5;//a cella tartalmát beállítom egy külső változóból
+tbodyRow5Cell1.innerHTML = fifthRowElement.esemeny;//a cellaban a fifthRowElement esemeny tulajdonsaganak lesz megjelenitve az erteke
 tbodyRow5.appendChild(tbodyRow5Cell1);//hozzáadjuk a cellát a sorhoz 
 
 //A sor második cellájának létrehozása
 const tbodyRow5Cell2 = document.createElement('td');//letrehozok egy td elemet
-tbodyRow5Cell2.innerHTML = evszam5;//a cella tartalmát beállítom egy külső változóból
+tbodyRow5Cell2.innerHTML = fifthRowElement.evszam;//a cellaban a fifthRowElement evszam tulajdonsaganak lesz megjelenitve az erteke
 tbodyRow5.appendChild(tbodyRow5Cell2);//hozzáadjuk a cellát a sorhoz 
 
 //új sor létrehozása
@@ -169,18 +178,18 @@ tbody.appendChild(tbodyRow6);//hozzáadjuk a sort a törzsönkhüz
 
 //A sor első cellájának létrehozása rowspannal
 const tbodyRow6Cell1 = document.createElement('td');//letrehozok egy td elemet
-tbodyRow6Cell1.innerHTML = uralkodo4;//a cella tartalmát beállítom egy külső változóból
+tbodyRow6Cell1.innerHTML = sixthRowElement.uralkodo;//a cellaban a sixthRowElement uralkodo tulajdonsaganak lesz megjelenitve az erteke
 tbodyRow6.appendChild(tbodyRow6Cell1);//hozzáadjuk a cellát a sorhoz 
 tbodyRow6Cell1.rowSpan = "2";//Itt adjuk meg hogy hány sort egyesítsen
 
 //A sor második cellájának létrehozása
 const tbodyRow6Cell2 = document.createElement('td');//letrehozok egy td elemet
-tbodyRow6Cell2.innerHTML = esemeny6;//a cella tartalmát beállítom egy külső változóból
+tbodyRow6Cell2.innerHTML = sixthRowElement.esemeny;//a cellaban a sixthRowElement esemeny tulajdonsaganak lesz megjelenitve az erteke
 tbodyRow6.appendChild(tbodyRow6Cell2);//hozzáadjuk a cellát a sorhoz 
 
 ////A sor harmadik cellájának létrehozása
 const tbodyRow6Cell3 = document.createElement('td');//letrehozok egy td elemet
-tbodyRow6Cell3.innerHTML = evszam6;//a cella tartalmát beállítom egy külső változóból
+tbodyRow6Cell3.innerHTML = sixthRowElement.evszam;//a cellaban a sixthRowElement evszam tulajdonsaganak lesz megjelenitve az erteke
 tbodyRow6.appendChild(tbodyRow6Cell3);//hozzáadjuk a cellát a sorhoz 
 
 //ús sor létrehozása
@@ -189,10 +198,10 @@ tbody.appendChild(tbodyRow7);//hozzáadjuk a sort a törzsönkhüz
 
 //A sor első cellájának létrehozása
 const tbodyRow7Cell1 = document.createElement('td');//letrehozok egy td elemet
-tbodyRow7Cell1.innerHTML = esemeny7;//a cella tartalmát beállítom egy külső változóból
+tbodyRow7Cell1.innerHTML = seventhRowElement.esemeny;//a cellaban a seventhRowElement esemeny tulajdonsaganak lesz megjelenitve az erteke
 tbodyRow7.appendChild(tbodyRow7Cell1);//hozzáadjuk a cellát a sorhoz 
 
 //A sor második cellájának létrehozása
 const tbodyRow7Cell2 = document.createElement('td');//letrehozok egy td elemet
-tbodyRow7Cell2.innerHTML = evszam7;//a cella tartalmát beállítom egy külső változóból
+tbodyRow7Cell2.innerHTML = seventhRowElement.evszam;//a cellaban a seventhRowElement evszam tulajdonsaganak lesz megjelenitve az erteke
 tbodyRow7.appendChild(tbodyRow7Cell2);//hozzáadjuk a cellát a sorhoz 
