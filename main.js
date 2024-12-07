@@ -109,6 +109,6 @@ for (let i = 0; i<array.length; i++){//itt iterálunk végig az array tömbünk�
     row2.appendChild(esemeny2);//hozzáadjuk a cellát a második sorhoz
     
     const evszam2 = document.createElement('td');//letrehozok egy td elemet
-    evszam2.innerHTML = currentElement.evszam2;//itt a currentElement esemeny tulajdonsaganak az erteket iratjuk ki
+    evszam2.innerHTML = currentElement.evszam2;//itt a currentElement evszam2 tulajdonsaganak az erteket iratjuk ki
     row2.appendChild(evszam2);//hozzáadjuk a cellát a második sorhoz
 }
