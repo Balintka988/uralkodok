@@ -83,8 +83,7 @@ headerRow.appendChild(headerCell3);//a headerRow-hoz (fejléc sorához) adom hoz
 const tbody = document.createElement('tbody');//létrehozok egy tbody elemet
 table.appendChild(tbody);//hozzáadjuk a tbody-t a table-hez
 
-for (let i = 0; i<array.length; i++){//itt iterálunk végig az array tömbünkön egy növekményes ciklussal
-    const currentElement = array[i];//az aktuális tömb elemét eltárolom a currentElement változóban
+for (const currentElement of array){//itt iterálunk végig az array tömb elemein és a currentElement lesz az aktuális elem
 
     const row1 = document.createElement('tr');//itt hozunk létre egy új sort a táblázatunknak
     tbody.appendChild(row1);//hozzáadjuk a sort (row1-et) a tbodyhoz
@@ -100,15 +99,20 @@ for (let i = 0; i<array.length; i++){//itt iterálunk végig az array tömbünk�
     const evszam = document.createElement('td');//letrehozok egy td elemet
     evszam.innerHTML = currentElement.evszam;//itt a currentElement evszam tulajdonsaganak az erteket iratjuk ki
     row1.appendChild(evszam);//hozzáadjuk a cellát az első sorhoz
-    
-    const row2 = document.createElement('tr');//itt hozunk létre egy másik új sort a táblázatunknak
-    tbody.appendChild(row2);//hozzáadjuk a sort (row2-t) a tbodyhoz
 
-    const esemeny2 = document.createElement('td');//letrehozok egy td elemet
-    esemeny2.innerHTML = currentElement.esemeny2;//itt a currentElement esemeny2 tulajdonsaganak az erteket iratjuk ki
-    row2.appendChild(esemeny2);//hozzáadjuk a cellát a második sorhoz
-    
-    const evszam2 = document.createElement('td');//letrehozok egy td elemet
-    evszam2.innerHTML = currentElement.evszam2;//itt a currentElement evszam2 tulajdonsaganak az erteket iratjuk ki
-    row2.appendChild(evszam2);//hozzáadjuk a cellát a második sorhoz
+    if (currentElement.esemeny2 !== undefined && currentElement.evszam2 !== undefined)
+    {//ez a feltétel akkor teljesül hogyha az aktuális elem esemeny2 és az evszam2 nem egyenlő undefineddel
+        const row2 = document.createElement('tr');//itt hozunk létre egy másik új sort a táblázatunknak
+        tbody.appendChild(row2);//hozzáadjuk a sort (row2-t) a tbodyhoz
+
+        uralkodo.rowSpan = "2";//itt a rowspant beállítjuk 2-re az uralkodonak mivel ha idáig lefutott akkor szükség lesz a sorok egyesítésére
+
+        const esemeny2 = document.createElement('td');//letrehozok egy td elemet
+        esemeny2.innerHTML = currentElement.esemeny2;//itt a currentElement esemeny2 tulajdonsaganak az erteket iratjuk ki
+        row2.appendChild(esemeny2);//hozzáadjuk a cellát a második sorhoz
+
+        const evszam2 = document.createElement('td');//letrehozok egy td elemet
+        evszam2.innerHTML = currentElement.evszam2;//itt a currentElement evszam2 tulajdonsaganak az erteket iratjuk ki
+        row2.appendChild(evszam2);//hozzáadjuk a cellát a második sorhoz
+    }
 }
