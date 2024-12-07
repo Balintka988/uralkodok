@@ -1,36 +1,36 @@
-const array = [
-    {//itt hozom létre az array tömbömnek második elemét 
-        uralkodo: "I.István",//ertekadas az array második elemen belul az uralkodo tulajdonsagnak
-        esemeny: "Koronázás",//ertekadas az array második elemen belul az esemeny tulajdonsagnak
-        evszam: "1000",//ertekadas az array második elemen belul az evszam tulajdonsagnak
-        esemeny2: "Pannonhalmi apátság megalapítása	",//ertekadas az array harmadik elemen belul az esemeny tulajdonsagnak
-        evszam2: "1001"//ertekadas az array harmadik elemen belul az evszam tulajdonsagnak
+const array = [//az array tömb létrehozása
+    {//itt hozom létre az array tömbömnek az első elemét 
+        uralkodo: "I.István",//ertekadas az array első elemen belul az uralkodo tulajdonsagnak
+        esemeny: "Koronázás",//ertekadas az array első elemen belul az esemeny tulajdonsagnak
+        evszam: "1000",//ertekadas az array első elemen belul az evszam tulajdonsagnak
+        esemeny2: "Pannonhalmi apátság megalapítása	",//ertekadas az array első elemen belul az esemeny2 tulajdonsagnak
+        evszam2: "1001"//ertekadas az array első elemen belul az evszam2 tulajdonsagnak
+    },
+    {//itt hozom létre az array tömbömnek masodik elemét 
+        uralkodo: "IV. Béla",//ertekadas az array masodik elemen belul az uralkodo tulajdonsagnak
+        esemeny: "tatárjárás",//ertekadas az array masodik elemen belul az esemeny tulajdonsagnak
+        evszam: "1241-1242"//ertekadas az array masodik elemen belul az evszam tulajdonsagnak
+    },
+    {//itt hozom létre az array tömbömnek harmadik elemét 
+        uralkodo: "Mátyás király",//ertekadas az array harmadik elemen belul az uralkodo tulajdonsagnak
+        esemeny: "Bécs elfoglalása",//ertekadas az array harmadik elemen belul az esemeny tulajdonsagnak
+        evszam: "1485",//ertekadas az array harmadik elemen belul az evszam tulajdonsagnak
+        esemeny2: "Kenyérmezei csata",//ertekadas az array harmadik elemen belul az esemeny2 tulajdonsagnak
+        evszam2: "1479"//ertekadas az array harmadik elemen belul az evszam2 tulajdonsagnak
     },
     {//itt hozom létre az array tömbömnek negyedik elemét 
-        uralkodo: "IV. Béla",//ertekadas az array negyedik elemen belul az uralkodo tulajdonsagnak
-        esemeny: "tatárjárás",//ertekadas az array negyedik elemen belul az esemeny tulajdonsagnak
-        evszam: "1241-1242"//ertekadas az array negyedik elemen belul az evszam tulajdonsagnak
-    },
-    {//itt hozom létre az array tömbömnek ötödik elemét 
-        uralkodo: "Mátyás király",//ertekadas az array ötödik elemen belul az uralkodo tulajdonsagnak
-        esemeny: "Bécs elfoglalása",//ertekadas az array ötödik elemen belul az esemeny tulajdonsagnak
-        evszam: "1485",//ertekadas az array ötödik elemen belul az evszam tulajdonsagnak
-        esemeny2: "Kenyérmezei csata",//ertekadas az array hatodik elemen belul az esemeny tulajdonsagnak
-        evszam2: "1479"//ertekadas az array hatodik elemen belul az evszam tulajdonsagnak
-    },
-    {//itt hozom létre az array tömbömnek hetedik elemét 
-        uralkodo: "II. Rákóczi Ferenc",//ertekadas az array hetedik elemen belul az uralkodo tulajdonsagnak
-        esemeny: "A szabadságharc kezdete",//ertekadas az array hetedik elemen belul az esemeny tulajdonsagnak
-        evszam: "1703",//ertekadas az array hetedik elemen belul az evszam tulajdonsagnak
-        esemeny2: "A szabadságharc vége",//ertekadas az array nyolcadik elemen belul az esemeny tulajdonsagnak
-        evszam2: "1711"//ertekadas az array nyolcadik elemen belul az evszam tulajdonsagnak
+        uralkodo: "II. Rákóczi Ferenc",//ertekadas az array negyedik elemen belul az uralkodo tulajdonsagnak
+        esemeny: "A szabadságharc kezdete",//ertekadas az array negyedik elemen belul az esemeny tulajdonsagnak
+        evszam: "1703",//ertekadas az array negyedik elemen belul az evszam tulajdonsagnak
+        esemeny2: "A szabadságharc vége",//ertekadas az array negyedik elemen belul az esemeny2 tulajdonsagnak
+        evszam2: "1711"//ertekadas az array negyedik elemen belul az evszam2 tulajdonsagnak
     }
 ]
 
-const header = {//itt hozom létre az array tömbömnek a elso elemét (Az indexelés 0ról kezdődik)
-    uralkodo: "Uralkodó",//ertekadas az array elso elemen belul az uralkodo tulajdonsagnak
-    esemeny: "Esemény",//ertekadas az array elso elemen belul az esemeny tulajdonsagnak
-    evszam: "Évszám"//ertekadas az array elso elemen belul az evszam tulajdonsagnak
+const header = {//itt hozom létre a fejléc objektumomat
+    uralkodo: "Uralkodó",//ertekadas az objektum uralkodo tulajdonsagnak
+    esemeny: "Esemény",//ertekadas az objektum esemeny tulajdonsagnak
+    evszam: "Évszám"//ertekadas az objektum evszam tulajdonsagnak
 }
 
 //Itt hozzuk létre a táblázatot
@@ -83,7 +83,7 @@ headerRow.appendChild(headerCell3);//a headerRow-hoz (fejléc sorához) adom hoz
 const tbody = document.createElement('tbody');//létrehozok egy tbody elemet
 table.appendChild(tbody);//hozzáadjuk a tbody-t a table-hez
 
-for (let i = 0; i<array.length; i++){//itt iterálunk végig az array tömbünkön
+for (let i = 0; i<array.length; i++){//itt iterálunk végig az array tömbünkön egy növekményes ciklussal
     const currentElement = array[i];//az aktuális tömb elemét eltárolom a currentElement változóban
 
     const row1 = document.createElement('tr');//itt hozunk létre egy új sort a táblázatunknak
@@ -109,6 +109,6 @@ for (let i = 0; i<array.length; i++){//itt iterálunk végig az array tömbünk�
     row2.appendChild(esemeny2);//hozzáadjuk a cellát a második sorhoz
     
     const evszam2 = document.createElement('td');//letrehozok egy td elemet
-    evszam2.innerHTML = currentElement.evszam2;//itt a currentElement evszam2 tulajdonsaganak az erteket iratjuk ki
+    evszam2.innerHTML = currentElement.evszam2;//itt a currentElement esemeny tulajdonsaganak az erteket iratjuk ki
     row2.appendChild(evszam2);//hozzáadjuk a cellát a második sorhoz
 }
