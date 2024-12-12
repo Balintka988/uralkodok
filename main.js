@@ -83,7 +83,7 @@ headerRow.appendChild(headerCell3);//a headerRow-hoz (fejléc sorához) adom hoz
 const tbody = document.createElement('tbody');//létrehozok egy tbody elemet
 table.appendChild(tbody);//hozzáadjuk a tbody-t a table-hez
 
-function renderTable(){//itt definialom a renderTable függvényemet
+function renderTable(array){//itt definialom a renderTable függvényemet ami az array-ből dolgozik
     for (const currentElement of array){//itt iterálunk végig az array tömb elemein és a currentElement lesz az aktuális elem
 
         const row1 = document.createElement('tr');//itt hozunk létre egy új sort a táblázatunknak
@@ -119,7 +119,7 @@ function renderTable(){//itt definialom a renderTable függvényemet
     }
 }
 
-renderTable();//itt hívom meg a renderTable függvényt
+renderTable(array);//itt hívom meg a renderTable függvényt
 
 const form = document.getElementById('form');//elékrem az index.html-ből a formomnak az id-ját
 
@@ -149,6 +149,6 @@ form.addEventListener('submit', function(e) {//amikor submitolunk akkor hívódi
     array.push(newElement);//itt adjuk hozzá az array-hez a new elementet(az új objektumunk)
 
     // Itt frissitjuk a tablazatunkat
-    tbody.innerHTML = ''; // a meglevo tablazat aktualis tartalmat itt töröljük
-    renderTable(); // itt hivjuk meg a renderTable függvényünket ami az új adatokkal együtt fog kirenderelődni
+    tbody.innerHTML = ''; // a meglevo tablazat aktualis tartalmat itt töröljük mert nem akarjuk duplikánlni a már meglévő táblázatot
+    renderTable(array); // itt hivjuk meg a renderTable függvényünket ami az új adatokkal együtt fog kirenderelődni
 });
