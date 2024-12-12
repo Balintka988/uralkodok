@@ -83,7 +83,7 @@ headerRow.appendChild(headerCell3);//a headerRow-hoz (fejléc sorához) adom hoz
 const tbody = document.createElement('tbody');//létrehozok egy tbody elemet
 table.appendChild(tbody);//hozzáadjuk a tbody-t a table-hez
 
-function renderTable(array){//itt definialom a renderTable függvényemet ami az array-ből dolgozik
+function renderTable(){//itt definialom a renderTable függvényemet 
     for (const currentElement of array){//itt iterálunk végig az array tömb elemein és a currentElement lesz az aktuális elem
 
         const row1 = document.createElement('tr');//itt hozunk létre egy új sort a táblázatunknak
@@ -119,7 +119,7 @@ function renderTable(array){//itt definialom a renderTable függvényemet ami az
     }
 }
 
-renderTable(array);//itt hívom meg a renderTable függvényt
+renderTable();//itt hívom meg a renderTable függvényt
 
 const form = document.getElementById('form');//elékrem az index.html-ből a formomnak az id-ját
 
@@ -132,23 +132,58 @@ form.addEventListener('submit', function(e) {//amikor submitolunk akkor hívódi
     const esemeny2HtmlElement = document.getElementById('esemeny2');//elkerem azt a htmlelementet aminek az esemeny2 az id-ja
     const evszam2HtmlElement = document.getElementById('evszam2');//elkerem azt a htmlelementet aminek az evszam2 az id-ja
 
+    const thisForm = e.currentTarget;//az e.currentTarget tartalmazza a formunkat amit eltarolunk egy valtozoban
+    const errorElements = thisForm.querySelectorAll('.error');//az összes olyan elemet elkérjük ami error classal rendelkezik
+    for (const errorElement of errorElements){//itt végigiterálunk az imént bekért error classos elemeken ami az errorElements
+        errorElement.innerHTML = "";//kitöröljük azt az elemet ami benne van
+    }
+
+    let valid = true;//itt megadjuk a valid változónak kezdőérték ként hogy true ezt majd a későbbiekben fogjuk változtatni
+
     const uralkodoValue = uralkodoHtmlElement.value;//az uralkodoHtmlElement értékét beleteszem egy változóba
     const esemenyValue = esemenyHtmlElement.value;//az esemenyHtmlElement értékét beleteszem egy változóba
     const evszamValue = evszamHtmlElement.value;//az evszamHtmlElement értékét beleteszem egy változóba
     const esemeny2Value = esemeny2HtmlElement.value === '' ? undefined : esemeny2HtmlElement.value;//ha az esemeny2HtmlElementben nincsen semmi akkor undefined lesz ha viszont ez nem igaz akkor ugyanúgy eltároljuk az értékét
-    const evszam2Value = evszam2HtmlElement.value === '' ? undefined : evszam2HtmlElement.value;//ha az evszam2HtmlElement nincsen semmi akkor undefined lesz ha viszont ez nem igaz akkor ugyanúgy eltároljuk az értékét
+    const evszam2Value = evszam2HtmlElement.value === '' ? undefined : evszam2HtmlElement.value;//ha az evszam2HtmlElement nincsen semmi(üres) akkor undefined lesz ha viszont ez nem igaz akkor ugyanúgy eltároljuk az értékét
 
-    const newElement = {//itt hozok létre egy új objektumot
-        uralkodo: uralkodoValue,//az uralkodo erteke az uralkodoValue lesz
-        esemeny: esemenyValue,//az uralkodo erteke az esemenyValue lesz
-        evszam: evszamValue,//az uralkodo erteke az evszamValue lesz
-        esemeny2: esemeny2Value,//az uralkodo erteke az esemeny2Value lesz
-        evszam2: evszam2Value//az uralkodo erteke az evszam2Value lesz
-    };
+    if(uralkodoValue === ""){//ellenőrizzük hogy az uralkodo input mezője üres-e
+        const parentElement = uralkodoHtmlElement.parentElement;//megkeressük az uralkodo input mezőjének parentElement propertyét és ezt eltároljuk egy változóba a html-ben a div fieldeket nézi
+        const errorplace = parentElement.querySelector('.error');//Az uralkodó beviteli mezőjének szuloelemeben keresünk egy olyan elemet amely rendelkezik az "error" osztállyal
+        if (errorplace != undefined){//hogyha van ilyen mező (nem undefined) akkor
+            errorplace.innerHTML = "Kötelező az uralkodó megadása";//megadjuk neki itt a hibaüzenetünket
+        }
+        valid = false;//a valid változó értékét hamisra állítjuk
+    }
+    if(esemenyValue === ""){//ellenőrizzük hogy az esemény input mezője üres-e
+        const parentElement = esemenyHtmlElement.parentElement;//megkeressük az esemény input mezőjének parentElement propertyét és ezt eltároljuk egy változóba
+        const errorplace = parentElement.querySelector('.error');//Az esemény beviteli mezőjének szuloelemeben keresünk egy olyan elemet amely rendelkezik az "error" osztállyal
+        if(errorplace != undefined){//hogyha van ilyen mező (nem undefined) akkor
+            errorplace.innerHTML = "Kötelező az esemény megadása";//megadjuk neki itt a hibaüzenetünket
+        }
+        valid = false;//a valid változó értékét hamisra állítjuk
+    }
+    if(evszamValue === ""){//ellenőrizzük hogy az évszám input mezője üres-e
+        const parentElement = evszamHtmlElement.parentElement;//megkeressük az évszám input mezőjének parentElement propertyét és ezt eltároljuk egy változóba
+        const errorplace = parentElement.querySelector('.error');//Az évszám beviteli mezőjének szuloelemeben keresünk egy olyan elemet amely rendelkezik az "error" osztállyal
+        if (errorplace != undefined){//hogyha van ilyen mező (nem undefined) akkor
+            errorplace.innerHTML = "Kötelező az évszám megadása";//megadjuk neki itt a hibaüzenetünket
+        }
+        valid = false;//a valid változó értékét hamisra állítjuk
+    }
 
+    if (valid){//abban az esetben ha a validációnk lefutott és nem volt kihagyott mező(azaz true maradt a valid változónk) akkor lefut
+        const newElement = {//itt hozok létre egy új objektumot
+            uralkodo: uralkodoValue,//az uralkodo erteke az uralkodoValue lesz
+            esemeny: esemenyValue,//az uralkodo erteke az esemenyValue lesz
+            evszam: evszamValue,//az uralkodo erteke az evszamValue lesz
+            esemeny2: esemeny2Value,//az uralkodo erteke az esemeny2Value lesz
+            evszam2: evszam2Value//az uralkodo erteke az evszam2Value lesz
+        };
     array.push(newElement);//itt adjuk hozzá az array-hez a new elementet(az új objektumunk)
-
     // Itt frissitjuk a tablazatunkat
     tbody.innerHTML = ''; // a meglevo tablazat aktualis tartalmat itt töröljük mert nem akarjuk duplikánlni a már meglévő táblázatot
-    renderTable(array); // itt hivjuk meg a renderTable függvényünket ami az új adatokkal együtt fog kirenderelődni
+    renderTable(); // itt hivjuk meg a renderTable függvényünket ami az új adatokkal együtt fog kirenderelődni
+    thisForm.reset();//miutan hozzáadtuk az adatokat a táblázatunkhoz az input mezőket(form-ot) visszaállítjuk
+    }
+
 });
