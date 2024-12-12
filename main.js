@@ -83,36 +83,40 @@ headerRow.appendChild(headerCell3);//a headerRow-hoz (fejléc sorához) adom hoz
 const tbody = document.createElement('tbody');//létrehozok egy tbody elemet
 table.appendChild(tbody);//hozzáadjuk a tbody-t a table-hez
 
-for (const currentElement of array){//itt iterálunk végig az array tömb elemein és a currentElement lesz az aktuális elem
+function renderTable(){//itt definialom a renderTable függvényemet
+    for (const currentElement of array){//itt iterálunk végig az array tömb elemein és a currentElement lesz az aktuális elem
 
-    const row1 = document.createElement('tr');//itt hozunk létre egy új sort a táblázatunknak
-    tbody.appendChild(row1);//hozzáadjuk a sort (row1-et) a tbodyhoz
-
-    const uralkodo = document.createElement('td');//letrehozok egy td elemet
-    uralkodo.innerHTML = currentElement.uralkodo;//itt a currentElement uralkodo tulajdonsaganak az erteket iratjuk ki
-    row1.appendChild(uralkodo);//hozzáadjuk az első cellát a sorhoz
-
-    const esemeny = document.createElement('td');//letrehozok egy td elemet
-    esemeny.innerHTML = currentElement.esemeny;//itt a currentElement esemeny tulajdonsaganak az erteket iratjuk ki
-    row1.appendChild(esemeny);//hozzáadjuk a cellát az első sorhoz
-
-    const evszam = document.createElement('td');//letrehozok egy td elemet
-    evszam.innerHTML = currentElement.evszam;//itt a currentElement evszam tulajdonsaganak az erteket iratjuk ki
-    row1.appendChild(evszam);//hozzáadjuk a cellát az első sorhoz
-
-    if (currentElement.esemeny2 !== undefined && currentElement.evszam2 !== undefined)
-    {//ez a feltétel akkor teljesül hogyha az aktuális elem esemeny2 és az evszam2 nem egyenlő undefineddel
-        const row2 = document.createElement('tr');//itt hozunk létre egy másik új sort a táblázatunknak
-        tbody.appendChild(row2);//hozzáadjuk a sort (row2-t) a tbodyhoz
-
-        uralkodo.rowSpan = "2";//itt a rowspant beállítjuk 2-re az uralkodonak mivel ha idáig lefutott akkor szükség lesz a sorok egyesítésére
-
-        const esemeny2 = document.createElement('td');//letrehozok egy td elemet
-        esemeny2.innerHTML = currentElement.esemeny2;//itt a currentElement esemeny2 tulajdonsaganak az erteket iratjuk ki
-        row2.appendChild(esemeny2);//hozzáadjuk a cellát a második sorhoz
-
-        const evszam2 = document.createElement('td');//letrehozok egy td elemet
-        evszam2.innerHTML = currentElement.evszam2;//itt a currentElement evszam2 tulajdonsaganak az erteket iratjuk ki
-        row2.appendChild(evszam2);//hozzáadjuk a cellát a második sorhoz
+        const row1 = document.createElement('tr');//itt hozunk létre egy új sort a táblázatunknak
+        tbody.appendChild(row1);//hozzáadjuk a sort (row1-et) a tbodyhoz
+    
+        const uralkodo = document.createElement('td');//letrehozok egy td elemet
+        uralkodo.innerHTML = currentElement.uralkodo;//itt a currentElement uralkodo tulajdonsaganak az erteket iratjuk ki
+        row1.appendChild(uralkodo);//hozzáadjuk az első cellát a sorhoz
+    
+        const esemeny = document.createElement('td');//letrehozok egy td elemet
+        esemeny.innerHTML = currentElement.esemeny;//itt a currentElement esemeny tulajdonsaganak az erteket iratjuk ki
+        row1.appendChild(esemeny);//hozzáadjuk a cellát az első sorhoz
+    
+        const evszam = document.createElement('td');//letrehozok egy td elemet
+        evszam.innerHTML = currentElement.evszam;//itt a currentElement evszam tulajdonsaganak az erteket iratjuk ki
+        row1.appendChild(evszam);//hozzáadjuk a cellát az első sorhoz
+    
+        if (currentElement.esemeny2 !== undefined && currentElement.evszam2 !== undefined)//ez a feltétel akkor teljesül hogyha az aktuális elem esemeny2 és az evszam2 nem egyenlő undefineddel
+        {
+            const row2 = document.createElement('tr');//itt hozunk létre egy másik új sort a táblázatunknak
+            tbody.appendChild(row2);//hozzáadjuk a sort (row2-t) a tbodyhoz
+    
+            uralkodo.rowSpan = "2";//itt a rowspant beállítjuk 2-re az uralkodonak mivel ha idáig lefutott akkor szükség lesz a sorok egyesítésére
+    
+            const esemeny2 = document.createElement('td');//letrehozok egy td elemet
+            esemeny2.innerHTML = currentElement.esemeny2;//itt a currentElement esemeny2 tulajdonsaganak az erteket iratjuk ki
+            row2.appendChild(esemeny2);//hozzáadjuk a cellát a második sorhoz
+    
+            const evszam2 = document.createElement('td');//letrehozok egy td elemet
+            evszam2.innerHTML = currentElement.evszam2;//itt a currentElement evszam2 tulajdonsaganak az erteket iratjuk ki
+            row2.appendChild(evszam2);//hozzáadjuk a cellát a második sorhoz
+        }
     }
 }
+
+renderTable();//itt hívom meg a renderTable függvényt
