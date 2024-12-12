@@ -140,38 +140,26 @@ form.addEventListener('submit', function(e) {//amikor submitolunk akkor hívódi
 
     let valid = true;//itt megadjuk a valid változónak kezdőérték ként hogy true ezt majd a későbbiekben fogjuk változtatni
 
+    
+    if(!validateFormInputFields(uralkodoHtmlElement, "meg kell adnod az uralkodót!")){//Ha a validateFormInputFields függvény hamis értékkel tér vissza a bemeneti uralkodo HTMLelement esetén
+        valid = false;//akkor a valid valtozo értékét false ra allitjuk
+    };
+    
+    if(!validateFormInputFields(esemenyHtmlElement, "meg kell adnod az eseményt!")){//Ha a validateFormInputFields függvény hamis értékkel tér vissza a bemeneti esemeny HTMLelement esetén
+        valid = false;//a valid valtozo értékét false ra allitjuk
+    };
+
+    if(!validateFormInputFields(evszamHtmlElement, "meg kell adnod az évszámot!")){//Ha a validateFormInputFields függvény hamis értékkel tér vissza a bemeneti evszam HTMLelement esetén
+        valid = false;//a valid valtozo értékét false ra allitjuk
+    };
+
+    if (valid){//abban az esetben ha a validációnk lefutott és nem volt kihagyott mező(azaz true maradt a valid változónk) akkor lefut
     const uralkodoValue = uralkodoHtmlElement.value;//az uralkodoHtmlElement értékét beleteszem egy változóba
     const esemenyValue = esemenyHtmlElement.value;//az esemenyHtmlElement értékét beleteszem egy változóba
     const evszamValue = evszamHtmlElement.value;//az evszamHtmlElement értékét beleteszem egy változóba
     const esemeny2Value = esemeny2HtmlElement.value === '' ? undefined : esemeny2HtmlElement.value;//ha az esemeny2HtmlElementben nincsen semmi tehát a htmlelement value tulajdonsága üres string akkor undefined lesz ha viszont ez nem igaz akkor ugyanúgy eltároljuk az értékét
     const evszam2Value = evszam2HtmlElement.value === '' ? undefined : evszam2HtmlElement.value;//ha az evszam2HtmlElement nincsen semmi tehát a htmlelement value tulajdonsága üres string akkor undefined lesz ha viszont ez nem igaz akkor ugyanúgy eltároljuk az értékét
 
-    if(uralkodoValue === ""){//ellenőrizzük hogy az uralkodo input mezője üres-e
-        const parentElement = uralkodoHtmlElement.parentElement;//megkeressük az uralkodo input mezőjének parentElement propertyét és ezt eltároljuk egy változóba a html-ben a div fieldeket nézi
-        const errorplace = parentElement.querySelector('.error');//Az uralkodó beviteli mezőjének szuloelemeben keresünk egy olyan elemet amely rendelkezik az "error" osztállyal
-        if (errorplace != undefined){//hogyha van ilyen mező(van ilyen htmlelement) (nem undefined) akkor
-            errorplace.innerHTML = "Kötelező az uralkodó megadása";//megadjuk neki itt a hibaüzenetünket
-        }
-        valid = false;//a valid változó értékét hamisra állítjuk
-    }
-    if(esemenyValue === ""){//ellenőrizzük hogy az esemény input mezője üres-e
-        const parentElement = esemenyHtmlElement.parentElement;//megkeressük az esemény input mezőjének parentElement propertyét és ezt eltároljuk egy változóba
-        const errorplace = parentElement.querySelector('.error');//Az esemény beviteli mezőjének szuloelemeben keresünk egy olyan elemet amely rendelkezik az "error" osztállyal
-        if(errorplace != undefined){//hogyha van ilyen mező(van ilyen htmlelement) (nem undefined) akkor
-            errorplace.innerHTML = "Kötelező az esemény megadása";//megadjuk neki itt a hibaüzenetünket
-        }
-        valid = false;//a valid változó értékét hamisra állítjuk
-    }
-    if(evszamValue === ""){//ellenőrizzük hogy az évszám input mezője üres-e
-        const parentElement = evszamHtmlElement.parentElement;//megkeressük az évszám input mezőjének parentElement propertyét és ezt eltároljuk egy változóba
-        const errorplace = parentElement.querySelector('.error');//Az évszám beviteli mezőjének szuloelemeben keresünk egy olyan elemet amely rendelkezik az "error" osztállyal
-        if (errorplace != undefined){//hogyha van ilyen mező(van ilyen htmlelement) (nem undefined) akkor
-            errorplace.innerHTML = "Kötelező az évszám megadása";//megadjuk neki itt a hibaüzenetünket
-        }
-        valid = false;//a valid változó értékét hamisra állítjuk
-    }
-
-    if (valid){//abban az esetben ha a validációnk lefutott és nem volt kihagyott mező(azaz true maradt a valid változónk) akkor lefut
         const newElement = {//itt hozok létre egy új objektumot
             uralkodo: uralkodoValue,//az uralkodo erteke az uralkodoValue lesz
             esemeny: esemenyValue,//az uralkodo erteke az esemenyValue lesz
@@ -186,4 +174,16 @@ form.addEventListener('submit', function(e) {//amikor submitolunk akkor hívódi
     thisForm.reset();//miutan hozzáadtuk az adatokat a táblázatunkhoz az input mezőket(form-ot) visszaállítjuk
     }
 
+    function validateFormInputFields(inputElement, errormessage){//itt adjuk meg a validateFormInputFields függvényünknek hogy milyen bemeneti elemet(htmlelement) és hibaüzenetet (string)varunk
+        let valid = true;//megadjuk a valid valtozonak kezdeti értéknek hogy true
+        if(inputElement.value === ""){//hogyha a bemeneti elem (inputElement) értéke üres akkor
+            const szuloelem = inputElement.parentElement;//megkeressük az éppen aktuális htmlelementnek a parentElement propertyét és ezt eltároljuk egy változóba
+            const errorLocation = szuloelem.querySelector('.error');//az éppen aktuális htmlelementnek a beviteli mezőjének szuloelemeben keresünk egy olyan elemet amely rendelkezik az "error" osztállyal
+            if (errorLocation != undefined){//hogyha van ilyen mező(van ilyen htmlelement) (nem undefined) akkor
+                errorLocation.innerHTML = errormessage;//megadjuk neki itt a hibaüzenetünket a bemeneti paraméterünkből
+            }
+            valid = false;//a valid változó értékét hamisra állítjuk
+        }
+        return valid;//visszatérünk a valid valtozoval ami hamis ha lefutott a validacio és true hogyha volt bele írva 
+    }
 });
