@@ -120,3 +120,35 @@ function renderTable(){//itt definialom a renderTable függvényemet
 }
 
 renderTable();//itt hívom meg a renderTable függvényt
+
+const form = document.getElementById('form');//elékrem az index.html-ből a formomnak az id-ját
+
+form.addEventListener('submit', function(e) {//amikor submitolunk akkor hívódik meg ez a függvény és egy új sort tudunk hozzáadni a táblázatunkhoz
+    e.preventDefault(); //megakadalyozza hogy a bongeszo alapertelmezetten fusson le
+
+    const uralkodoHtmlElement = document.getElementById('uralkodo_nev');//elkerem azt a htmlelementet aminek az uralkodo_nev az id-ja
+    const esemenyHtmlElement = document.getElementById('esemeny1');//elkerem azt a htmlelementet aminek az esemeny1 az id-ja
+    const evszamHtmlElement = document.getElementById('evszam1');//elkerem azt a htmlelementet aminek az evszam1 az id-ja
+    const esemeny2HtmlElement = document.getElementById('esemeny2');//elkerem azt a htmlelementet aminek az esemeny2 az id-ja
+    const evszam2HtmlElement = document.getElementById('evszam2');//elkerem azt a htmlelementet aminek az evszam2 az id-ja
+
+    const uralkodoValue = uralkodoHtmlElement.value;//az uralkodoHtmlElement értékét beleteszem egy változóba
+    const esemenyValue = esemenyHtmlElement.value;//az esemenyHtmlElement értékét beleteszem egy változóba
+    const evszamValue = evszamHtmlElement.value;//az evszamHtmlElement értékét beleteszem egy változóba
+    const esemeny2Value = esemeny2HtmlElement.value === '' ? undefined : esemeny2HtmlElement.value;//ha az esemeny2HtmlElementben nincsen semmi akkor undefined lesz ha viszont ez nem igaz akkor ugyanúgy eltároljuk az értékét
+    const evszam2Value = evszam2HtmlElement.value === '' ? undefined : evszam2HtmlElement.value;//ha az evszam2HtmlElement nincsen semmi akkor undefined lesz ha viszont ez nem igaz akkor ugyanúgy eltároljuk az értékét
+
+    const newElement = {//itt hozok létre egy új objektumot
+        uralkodo: uralkodoValue,//az uralkodo erteke az uralkodoValue lesz
+        esemeny: esemenyValue,//az uralkodo erteke az esemenyValue lesz
+        evszam: evszamValue,//az uralkodo erteke az evszamValue lesz
+        esemeny2: esemeny2Value,//az uralkodo erteke az esemeny2Value lesz
+        evszam2: evszam2Value//az uralkodo erteke az evszam2Value lesz
+    };
+
+    array.push(newElement);//itt adjuk hozzá az array-hez a new elementet(az új objektumunk)
+
+    // Itt frissitjuk a tablazatunkat
+    tbody.innerHTML = ''; // a meglevo tablazat aktualis tartalmat itt töröljük
+    renderTable(); // itt hivjuk meg a renderTable függvényünket ami az új adatokkal együtt fog kirenderelődni
+});
