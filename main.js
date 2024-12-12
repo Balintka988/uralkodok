@@ -143,13 +143,13 @@ form.addEventListener('submit', function(e) {//amikor submitolunk akkor hívódi
     const uralkodoValue = uralkodoHtmlElement.value;//az uralkodoHtmlElement értékét beleteszem egy változóba
     const esemenyValue = esemenyHtmlElement.value;//az esemenyHtmlElement értékét beleteszem egy változóba
     const evszamValue = evszamHtmlElement.value;//az evszamHtmlElement értékét beleteszem egy változóba
-    const esemeny2Value = esemeny2HtmlElement.value === '' ? undefined : esemeny2HtmlElement.value;//ha az esemeny2HtmlElementben nincsen semmi akkor undefined lesz ha viszont ez nem igaz akkor ugyanúgy eltároljuk az értékét
-    const evszam2Value = evszam2HtmlElement.value === '' ? undefined : evszam2HtmlElement.value;//ha az evszam2HtmlElement nincsen semmi(üres) akkor undefined lesz ha viszont ez nem igaz akkor ugyanúgy eltároljuk az értékét
+    const esemeny2Value = esemeny2HtmlElement.value === '' ? undefined : esemeny2HtmlElement.value;//ha az esemeny2HtmlElementben nincsen semmi tehát a htmlelement value tulajdonsága üres string akkor undefined lesz ha viszont ez nem igaz akkor ugyanúgy eltároljuk az értékét
+    const evszam2Value = evszam2HtmlElement.value === '' ? undefined : evszam2HtmlElement.value;//ha az evszam2HtmlElement nincsen semmi tehát a htmlelement value tulajdonsága üres string akkor undefined lesz ha viszont ez nem igaz akkor ugyanúgy eltároljuk az értékét
 
     if(uralkodoValue === ""){//ellenőrizzük hogy az uralkodo input mezője üres-e
         const parentElement = uralkodoHtmlElement.parentElement;//megkeressük az uralkodo input mezőjének parentElement propertyét és ezt eltároljuk egy változóba a html-ben a div fieldeket nézi
         const errorplace = parentElement.querySelector('.error');//Az uralkodó beviteli mezőjének szuloelemeben keresünk egy olyan elemet amely rendelkezik az "error" osztállyal
-        if (errorplace != undefined){//hogyha van ilyen mező (nem undefined) akkor
+        if (errorplace != undefined){//hogyha van ilyen mező(van ilyen htmlelement) (nem undefined) akkor
             errorplace.innerHTML = "Kötelező az uralkodó megadása";//megadjuk neki itt a hibaüzenetünket
         }
         valid = false;//a valid változó értékét hamisra állítjuk
@@ -157,7 +157,7 @@ form.addEventListener('submit', function(e) {//amikor submitolunk akkor hívódi
     if(esemenyValue === ""){//ellenőrizzük hogy az esemény input mezője üres-e
         const parentElement = esemenyHtmlElement.parentElement;//megkeressük az esemény input mezőjének parentElement propertyét és ezt eltároljuk egy változóba
         const errorplace = parentElement.querySelector('.error');//Az esemény beviteli mezőjének szuloelemeben keresünk egy olyan elemet amely rendelkezik az "error" osztállyal
-        if(errorplace != undefined){//hogyha van ilyen mező (nem undefined) akkor
+        if(errorplace != undefined){//hogyha van ilyen mező(van ilyen htmlelement) (nem undefined) akkor
             errorplace.innerHTML = "Kötelező az esemény megadása";//megadjuk neki itt a hibaüzenetünket
         }
         valid = false;//a valid változó értékét hamisra állítjuk
@@ -165,7 +165,7 @@ form.addEventListener('submit', function(e) {//amikor submitolunk akkor hívódi
     if(evszamValue === ""){//ellenőrizzük hogy az évszám input mezője üres-e
         const parentElement = evszamHtmlElement.parentElement;//megkeressük az évszám input mezőjének parentElement propertyét és ezt eltároljuk egy változóba
         const errorplace = parentElement.querySelector('.error');//Az évszám beviteli mezőjének szuloelemeben keresünk egy olyan elemet amely rendelkezik az "error" osztállyal
-        if (errorplace != undefined){//hogyha van ilyen mező (nem undefined) akkor
+        if (errorplace != undefined){//hogyha van ilyen mező(van ilyen htmlelement) (nem undefined) akkor
             errorplace.innerHTML = "Kötelező az évszám megadása";//megadjuk neki itt a hibaüzenetünket
         }
         valid = false;//a valid változó értékét hamisra állítjuk
