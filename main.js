@@ -121,7 +121,7 @@ function renderTable(){//itt definialom a renderTable függvényemet
 
 renderTable();//itt hívom meg a renderTable függvényt
 
-const form = document.getElementById('form');//elékrem az index.html-ből a formomnak az id-ját
+const form = document.getElementById('form');//elékrem az index.html-ből a form id alapján a form htmlelementjét
 
 form.addEventListener('submit', function(e) {//amikor submitolunk akkor hívódik meg ez a függvény és egy új sort tudunk hozzáadni a táblázatunkhoz
     e.preventDefault(); //megakadalyozza hogy a bongeszo alapertelmezetten fusson le
@@ -173,8 +173,9 @@ form.addEventListener('submit', function(e) {//amikor submitolunk akkor hívódi
     renderTable(); // itt hivjuk meg a renderTable függvényünket ami az új adatokkal együtt fog kirenderelődni
     thisForm.reset();//miutan hozzáadtuk az adatokat a táblázatunkhoz az input mezőket(form-ot) visszaállítjuk
     }
+});
 
-    function validateFormInputFields(inputElement, errormessage){//itt adjuk meg a validateFormInputFields függvényünknek hogy milyen bemeneti elemet(htmlelement) és hibaüzenetet (string)varunk
+function validateFormInputFields(inputElement, errormessage){//itt adjuk meg a validateFormInputFields függvényünknek hogy milyen bemeneti elemet(htmlelement) és hibaüzenetet (string)varunk
         let valid = true;//megadjuk a valid valtozonak kezdeti értéknek hogy true
         if(inputElement.value === ""){//hogyha a bemeneti elem (inputElement) értéke üres akkor
             const szuloelem = inputElement.parentElement;//megkeressük az éppen aktuális htmlelementnek a parentElement propertyét és ezt eltároljuk egy változóba
@@ -185,5 +186,4 @@ form.addEventListener('submit', function(e) {//amikor submitolunk akkor hívódi
             valid = false;//a valid változó értékét hamisra állítjuk
         }
         return valid;//visszatérünk a valid valtozoval ami hamis ha lefutott a validacio és true hogyha volt bele írva 
-    }
-});
+}
