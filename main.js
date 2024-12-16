@@ -152,6 +152,22 @@ form.addEventListener('submit', function(e) {//amikor submitolunk akkor hívódi
     if(!validateFormInputFields(evszamHtmlElement, "meg kell adnod az évszámot!")){//Ha a validateFormInputFields függvény hamis értékkel tér vissza a bemeneti evszam HTMLelement esetén
         valid = false;//a valid valtozo értékét false ra allitjuk
     };
+    if(esemeny2HtmlElement.value === '' && evszam2HtmlElement.value !== ''){//ez az elágazás csak akkor fut le hogyha a esemény mező üres és az évszám meg nem
+            const szuloelem = esemeny2HtmlElement.parentElement;//megkeressük az éppen aktuális htmlelementnek a parentElement propertyét és ezt eltároljuk egy változóba
+            const errorLocation = szuloelem.querySelector('.error');//az éppen aktuális htmlelementnek a beviteli mezőjének szuloelemeben keresünk egy olyan elemet amely rendelkezik az "error" osztállyal
+            if (errorLocation != undefined){//hogyha van ilyen mező(van ilyen htmlelement) (nem undefined) akkor
+                errorLocation.innerHTML = "Minden eseményhez kell tartoznia évszámnak";//megadjuk neki itt a hibaüzenetünket manuálisan (stringet adunk át)
+            }
+            valid = false;//a valid változó értékét hamisra állítjuk
+    };
+    if(evszam2HtmlElement.value === '' && esemeny2HtmlElement.value !== ''){//ez az elágazás csak akkor fut le hogyha a esemény mező üres és az évszám meg nem
+            const szuloelem = evszam2HtmlElement.parentElement;//megkeressük az éppen aktuális htmlelementnek a parentElement propertyét és ezt eltároljuk egy változóba
+            const errorLocation = szuloelem.querySelector('.error');//az éppen aktuális htmlelementnek a beviteli mezőjének szuloelemeben keresünk egy olyan elemet amely rendelkezik az "error" osztállyal
+            if (errorLocation != undefined){//hogyha van ilyen mező(van ilyen htmlelement) (nem undefined) akkor
+                errorLocation.innerHTML = "Minden eseményhez kell tartoznia évszámnak";//megadjuk neki itt a hibaüzenetünket manuálisan (stringet adunk át)
+            }
+            valid = false;//a valid változó értékét hamisra állítjuk
+    };
 
     if (valid){//abban az esetben ha a validációnk lefutott és nem volt kihagyott mező(azaz true maradt a valid változónk) akkor lefut
     const uralkodoValue = uralkodoHtmlElement.value;//az uralkodoHtmlElement értékét beleteszem egy változóba
