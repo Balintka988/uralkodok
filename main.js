@@ -152,23 +152,11 @@ form.addEventListener('submit', function(e) {//amikor submitolunk akkor hívódi
     if(!validateFormInputFields(evszamHtmlElement, "meg kell adnod az évszámot!")){//Ha a validateFormInputFields függvény hamis értékkel tér vissza a bemeneti evszam HTMLelement esetén
         valid = false;//a valid valtozo értékét false ra allitjuk
     };
-    if(esemeny2HtmlElement.value === '' && evszam2HtmlElement.value !== ''){//ez az elágazás csak akkor fut le hogyha a esemény mező üres és az évszám meg nem
-            const szuloelem = esemeny2HtmlElement.parentElement;//megkeressük az éppen aktuális htmlelementnek a parentElement propertyét és ezt eltároljuk egy változóba
-            const errorLocation = szuloelem.querySelector('.error');//az éppen aktuális htmlelementnek a beviteli mezőjének szuloelemeben keresünk egy olyan elemet amely rendelkezik az "error" osztállyal
-            if (errorLocation != undefined){//hogyha van ilyen mező(van ilyen htmlelement) (nem undefined) akkor
-                errorLocation.innerHTML = "Minden eseményhez kell tartoznia évszámnak";//megadjuk neki itt a hibaüzenetünket manuálisan (stringet adunk át)
-            }
-            valid = false;//a valid változó értékét hamisra állítjuk
+    if(!osszetettValidacio(esemeny2HtmlElement, evszam2HtmlElement, "Minden eseményhez kell tartoznia évszámnak")){//ellenőrizzük hogy ha az osszetettValidacio fuggvényunk hamissal tér-e vissza, emellett itt adjuk meg a függvényünknek a paramétereit ami kettő html elem és egy string
+        valid = false;//a valid változó értékét hamisra állítjuk
     };
-    if(evszam2HtmlElement.value === '' && esemeny2HtmlElement.value !== ''){//ez az elágazás csak akkor fut le hogyha a esemény mező üres és az évszám meg nem
-            const szuloelem = evszam2HtmlElement.parentElement;//megkeressük az éppen aktuális htmlelementnek a parentElement propertyét és ezt eltároljuk egy változóba
-            const errorLocation = szuloelem.querySelector('.error');//az éppen aktuális htmlelementnek a beviteli mezőjének szuloelemeben keresünk egy olyan elemet amely rendelkezik az "error" osztállyal
-            if (errorLocation != undefined){//hogyha van ilyen mező(van ilyen htmlelement) (nem undefined) akkor
-                errorLocation.innerHTML = "Minden eseményhez kell tartoznia évszámnak";//megadjuk neki itt a hibaüzenetünket manuálisan (stringet adunk át)
-            }
-            valid = false;//a valid változó értékét hamisra állítjuk
-    };
-
+    
+    
     if (valid){//abban az esetben ha a validációnk lefutott és nem volt kihagyott mező(azaz true maradt a valid változónk) akkor lefut
     const uralkodoValue = uralkodoHtmlElement.value;//az uralkodoHtmlElement értékét beleteszem egy változóba
     const esemenyValue = esemenyHtmlElement.value;//az esemenyHtmlElement értékét beleteszem egy változóba
@@ -190,6 +178,27 @@ form.addEventListener('submit', function(e) {//amikor submitolunk akkor hívódi
     thisForm.reset();//miutan hozzáadtuk az adatokat a táblázatunkhoz az input mezőket(form-ot) visszaállítjuk
     }
 });
+
+function osszetettValidacio(esemeny2, evszam2, errormessage){//bemeneti értéknek kettő htmlelementet adunk neki esemeny2 és evszam2 és egy stringet ami az errormessage
+    let valid = true;//megadjuk a valid valtozonak kezdeti értéknek hogy true
+    if(esemeny2.value === '' && evszam2.value !== ''){//ez az elágazás csak akkor fut le hogyha a esemény2 mező üres és az évszám2 meg nem
+        const szuloelem = esemeny2.parentElement;//megkeressük az éppen aktuális htmlelementnek a parentElement propertyét és ezt eltároljuk egy változóba
+        const errorLocation = szuloelem.querySelector('.error');//az éppen aktuális htmlelementnek a beviteli mezőjének szuloelemeben keresünk egy olyan elemet amely rendelkezik az "error" osztállyal
+        if (errorLocation != undefined){//hogyha van ilyen mező(van ilyen htmlelement) (nem undefined) akkor
+            errorLocation.innerHTML = errormessage;//a hibaüzenetünket itt jelenitjuk meg amit a függvényhíváskor adunk meg neki (stringet adunk át)
+        }
+        valid = false;//a valid változó értékét hamisra állítjuk
+    }
+    if(evszam2.value === '' && esemeny2.value !== ''){//ez az elágazás csak akkor fut le hogyha a évszám2 mező üres és az esemeny2 meg nem
+        const szuloelem = evszam2.parentElement;//megkeressük az éppen aktuális htmlelementnek a parentElement propertyét és ezt eltároljuk egy változóba
+        const errorLocation = szuloelem.querySelector('.error');//az éppen aktuális htmlelementnek a beviteli mezőjének szuloelemeben keresünk egy olyan elemet amely rendelkezik az "error" osztállyal
+        if (errorLocation != undefined){//hogyha van ilyen mező(van ilyen htmlelement) (nem undefined) akkor
+            errorLocation.innerHTML = errormessage;//a hibaüzenetünket jelenitjuk meg amit a függvényhíváskor adunk meg neki (stringet adunk át)
+        }
+        valid = false;//a valid változó értékét hamisra állítjuk
+    }
+    return valid;//visszatérünk a valid változonk ertekevel
+}
 
 function validateFormInputFields(inputElement, errormessage){//itt adjuk meg a validateFormInputFields függvényünknek hogy milyen bemeneti elemet(htmlelement) és hibaüzenetet (string)varunk
         let valid = true;//megadjuk a valid valtozonak kezdeti értéknek hogy true
