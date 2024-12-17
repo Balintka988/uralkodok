@@ -60,28 +60,27 @@ colgroup.appendChild(col3);//a colgrouphoz adom hozzá
 const thead = document.createElement('thead');//thead elem letrehozasa itt tortenik ez lesz a fejlec
 table.appendChild(thead);//hozzáadom a tablehez
 
-//Létrehozunk egy sort a fejlécnek
-const headerRow = document.createElement('tr');//itt hozok létre egy tr elemet 
-thead.appendChild(headerRow);//hozzadaom a theadre
-
-//Az első cella létrehozása a fejléc sorában
-const headerCell = document.createElement('th');//itt egy th elemet hozok letre
-headerCell.innerHTML = header.uralkodo;//a cellaban az array 0.tagjanak az uralkodo tulajdonsag erteke lesz megjelenitve 
-headerRow.appendChild(headerCell);//a headerRow-hoz (fejléc sorához) adom hozzá
-
-//A második cella létrehozása a fejléc sorában
-const headerCell2 = document.createElement('th');//itt egy th elemet hozok letre
-headerCell2.innerHTML = header.esemeny;//a cellaban az array 0.tagjanak az esemeny tulajdonsag erteke lesz megjelenitve 
-headerRow.appendChild(headerCell2);//a headerRow-hoz (fejléc sorához) adom hozzá
-
-//A harmadik cella létrehozása a fejléc sorában
-const headerCell3 = document.createElement('th');//itt egy th elemet hozok letre
-headerCell3.innerHTML = header.evszam;//a cellaban az array 0.tagjanak az evszam tulajdonsag erteke lesz megjelenitve 
-headerRow.appendChild(headerCell3);//a headerRow-hoz (fejléc sorához) adom hozzá
-
 //Itt hozzuk létre a táblázat törzsét
 const tbody = document.createElement('tbody');//létrehozok egy tbody elemet
 table.appendChild(tbody);//hozzáadjuk a tbody-t a table-hez
+
+function CreateHeader(){ //fejlec legeneralasa
+    const fejlec = ["Uralkodó", "Esemény", "Évszám"]; //a fejlec nevű tömbbe eltároljuk az adatokat amik stringek
+
+    const headerRow = document.createElement('tr'); //a fejlécnek létrehozok egy sort
+    thead.appendChild(headerRow); //thead elemhez hozzáadom az új sorunkat
+
+    for (const item of fejlec) { //a fejlec tömböt for of-al járom be
+        const headerCell = document.createElement('th'); //létrehozok egy uj cellat 
+        headerCell.innerHTML = item; //a headerCell cellájának adom meg az éppen aktuális elemet
+
+        if (item === fejlec[0] || item === fejlec[fejlec.length - 1]) { //egy elágazással kell megnéznem azt hogy az első vagy az utolso oszlopnál járunk e hogy a css jól mukodjon
+            headerCell.className = 'column'; //itt rendeljük hozza a column osztályt
+        }
+
+        headerRow.appendChild(headerCell); //végül a cellát hozzáadjuk a fejléc sorához
+    }
+}
 
 function renderTable(){//itt definialom a renderTable függvényemet 
     for (const currentElement of array){//itt iterálunk végig az array tömb elemein és a currentElement lesz az aktuális elem
@@ -212,3 +211,4 @@ function validateFormInputFields(inputElement, errormessage){//itt adjuk meg a v
         }
         return valid;//visszatérünk a valid valtozoval ami hamis ha lefutott a validacio és true hogyha volt bele írva 
 }
+CreateHeader();
