@@ -64,6 +64,119 @@ table.appendChild(thead);//hozzáadom a tablehez
 const tbody = document.createElement('tbody');//létrehozok egy tbody elemet
 table.appendChild(tbody);//hozzáadjuk a tbody-t a table-hez
 
+function formGenerate(){
+    const form = document.createElement('form');//letrehozunk egy form elemet
+    form.id = 'form';//itt adjuk meg neki a classát hogy majd később erre tudjunk hivatkozni
+    document.body.appendChild(form);//az űrlapot hozzáadjuk a dokumentumunk törzséhez, bodyhoz
+
+    const div_1 = document.createElement('div');//létrehozunk egy div elemet ami a formunk első sora lesz
+    div_1.classList.add('field');//megadom a div_1-nek a field classt
+
+    const label1 = document.createElement('label');//létrehozok egy label elemet
+    label1.htmlFor = 'uralkodo_nev';//a labelnek megadjuk a for attribútumot
+    label1.innerText = 'Uralkodó neve:';//a label szövegét beállítjuk Uralkodo neve-re
+    div_1.appendChild(label1);//hozzáadom a label1-et a div_1hez
+
+    const input1 = document.createElement('input');//itt hozzuk létre az input mezőt, itt viszük majd be a szöveget
+    input1.type = 'text';//az input típusát textre állítjuk, hogy szöveges adatot tudjunk bevinni
+    input1.id = 'uralkodo_nev';//itt adjuk meg az azonosítóját
+    input1.name = 'uralkodo_nev';//itt adjuk meg a name attribútumot az inputnak
+    div_1.appendChild(input1);//Az input mezőt hozzáadjuk a div_1-hez
+
+    const div1_error = document.createElement('div');//létrehozunk még egy divet ahol majd a hibaüzenetet fogjuk megjeleníteni
+    div1_error.classList = 'error';//error osztályt hozzárendeljük
+    div_1.appendChild(div1_error);//a hibaüzenet div-et hozzáadjuk a div_1 hez
+
+    form.appendChild(div_1);//az imént összeállított div_1-et itt adjuk hozzá a formhoz
+    
+    const div_2 = document.createElement('div');//létrehozunk egy div elemet ami a formunk első sora lesz
+    div_2.classList.add('field');//megadom a div_2-nek a field classt
+
+    const label2 = document.createElement('label');//létrehozok egy label elemet
+    label2.htmlFor = 'esemeny1';//a labelnek megadjuk a for attribútumot
+    label2.innerText = 'Első esemény:';//a label szövegét beállítjuk Első esemeny-re
+    div_2.appendChild(label2);//hozzáadom a label2-et a div_1hez
+
+    const input2 = document.createElement('input');//itt hozzuk létre az input mezőt, itt viszük majd be a szöveget
+    input2.type = 'text';//az input típusát textre állítjuk, hogy szöveges adatot tudjunk bevinni
+    input2.id = 'esemeny1';//itt adjuk meg az azonosítóját
+    input2.name = 'esemeny1';//itt adjuk meg a name attribútumot az inputnak
+    div_2.appendChild(input2);//Az input mezőt hozzáadjuk a div_2-hez
+
+    const div2_error = document.createElement('div');//létrehozunk még egy divet ahol majd a hibaüzenetet fogjuk megjeleníteni
+    div2_error.classList = 'error';//error osztályt hozzárendeljük
+    div_2.appendChild(div2_error);//a hibaüzenet div-et hozzáadjuk a div_2 höz
+
+    form.appendChild(div_2);//az imént összeállított div_1-et itt adjuk hozzá a formhoz
+
+    const div_3 = document.createElement('div');//létrehozunk egy div elemet ami a formunk első sora lesz
+    div_3.classList.add('field');//megadom a div_3-nek a field classt
+
+    const label3 = document.createElement('label');//létrehozok egy label elemet
+    label3.htmlFor = 'evszam1';//a labelnek megadjuk a for attribútumot
+    label3.innerText = 'Első esemény évszáma:';//a label szövegét beállítjuk Első esemény évszáma:-ra
+    div_3.appendChild(label3);//hozzáadom a label3-at a div_1hez
+
+    const input3 = document.createElement('input');//itt hozzuk létre az input mezőt, itt viszük majd be a szöveget
+    input3.type = 'text';//az input típusát textre állítjuk, hogy szöveges adatot tudjunk bevinni
+    input3.id = 'evszam1';//itt adjuk meg az azonosítóját
+    input3.name = 'evszam1';//itt adjuk meg a name attribútumot az inputnak
+    div_3.appendChild(input3);//Az input mezőt hozzáadjuk a div_3-hoz
+
+    const div3_error = document.createElement('div');//létrehozunk még egy divet ahol majd a hibaüzenetet fogjuk megjeleníteni
+    div3_error.classList = 'error';//error osztályt hozzárendeljük
+    div_3.appendChild(div3_error);//a hibaüzenet div-et hozzáadjuk a div_3 hoz
+
+    form.appendChild(div_3);//az imént összeállított div_1-et itt adjuk hozzá a formhoz
+
+    const div_4 = document.createElement('div');//létrehozunk egy div elemet ami a formunk első sora lesz
+    div_4.classList.add('field');//megadom a div_4-nek a field classt
+
+    const label4 = document.createElement('label');//létrehozok egy label elemet
+    label4.htmlFor = 'esemeny2';//a labelnek megadjuk a for attribútumot
+    label4.innerText = 'Második esemény:';//a label szövegét beállítjuk Második eseméynre
+    div_4.appendChild(label4);//hozzáadom a label4-et a div_1hez
+
+    const input4 = document.createElement('input');//itt hozzuk létre az input mezőt, itt viszük majd be a szöveget
+    input4.type = 'text';//az input típusát textre állítjuk, hogy szöveges adatot tudjunk bevinni
+    input4.id = 'esemeny2';//itt adjuk meg az azonosítóját
+    input4.name = 'esemeny2';//itt adjuk meg a name attribútumot az inputnak
+    div_4.appendChild(input4);//Az input mezőt hozzáadjuk a div_4-hez
+
+    const div4_error = document.createElement('div');//létrehozunk még egy divet ahol majd a hibaüzenetet fogjuk megjeleníteni
+    div4_error.classList = 'error';//error osztályt hozzárendeljük
+    div_4.appendChild(div4_error);//a hibaüzenet div-et hozzáadjuk a div_4 hez
+
+    form.appendChild(div_4);//az imént összeállított div_1-et itt adjuk hozzá a formhoz
+
+    const div_5 = document.createElement('div');//létrehozunk egy div elemet ami a formunk első sora lesz
+    div_5.classList.add('field');//megadom a div_5-nek a field classt
+
+    const label5 = document.createElement('label');//létrehozok egy label elemet
+    label5.htmlFor = 'evszam2';//a labelnek megadjuk a for attribútumot
+    label5.innerText = 'Második esemény évszáma';//a label szövegét beállítjuk Második esemény évszámára
+    div_5.appendChild(label5);//hozzáadom a label1-öt a div_1hez
+
+    const input5 = document.createElement('input');//itt hozzuk létre az input mezőt, itt viszük majd be a szöveget
+    input5.type = 'text';//az input típusát textre állítjuk, hogy szöveges adatot tudjunk bevinni
+    input5.id = 'evszam2';//itt adjuk meg az azonosítóját
+    input5.name = 'evszam2';//itt adjuk meg a name attribútumot az inputnak
+    div_5.appendChild(input5);//Az input mezőt hozzáadjuk a div_5-höz
+
+    const div5_error = document.createElement('div');//létrehozunk még egy divet ahol majd a hibaüzenetet fogjuk megjeleníteni
+    div5_error.classList = 'error';//error osztályt hozzárendeljük
+    div_5.appendChild(div5_error);//a hibaüzenet div-et hozzáadjuk a div_5 höz
+
+    form.appendChild(div_5);//az imént összeállított div_1-et itt adjuk hozzá a formhoz
+
+    const button = document.createElement('button');//itt hozok létre egy új button elemet
+    button.type = 'submit';//a típusát beállítjuk submitra
+    button.innerText = 'Hozzáadás';//a gombon kiírva az lesz hogy Hozzáadás
+
+    form.appendChild(button);//hozzáadjuk a gombunkat a formhoz
+}
+formGenerate();
+
 function CreateHeader(){ //fejlec legeneralasa
     const fejlec = ["Uralkodó", "Esemény", "Évszám"]; //a fejlec nevű tömbbe eltároljuk az adatokat amik stringek
 
