@@ -27,43 +27,21 @@ const array = [//az array tömb létrehozása
     }
 ]
 
-const header = {//itt hozom létre a fejléc objektumomat
-    uralkodo: "Uralkodó",//ertekadas az objektum uralkodo tulajdonsagnak
-    esemeny: "Esemény",//ertekadas az objektum esemeny tulajdonsagnak
-    evszam: "Évszám"//ertekadas az objektum evszam tulajdonsagnak
-}
-
-//Itt hozzuk létre a táblázatot
-const table = document.createElement('table');//létrehozok egy table elemet, ami majd a tablazatomat fogja tartalmazni
-document.body.appendChild(table);//Hozzáadom a bodyhoz
-
-//A colgroup elemek szabályozzák a táblázatunk oszlopainak stílusát
-//A colgroup elemet hozzuk it létre
-const colgroup = document.createElement('colgroup');//itt hozom létre a colgroup elemet
-table.appendChild(colgroup);//hozzáadjuk a tablehoz
-
-//itt definiálom az első oszlopot 
-const col1 = document.createElement('col');//itt hozom letre a col elemet
-col1.className = "column";//itt adok neki egy className-t ez alapjan talalja meg a css
-colgroup.appendChild(col1);//a colgrouphoz adom hozzá
-
-//itt definiálom a második oszlopot, nem adok neki semmit mert nem kell semmit megjelenítenie
-const col2 = document.createElement('col');//itt hozom letre a col elemet
-colgroup.appendChild(col2);//a colgrouphoz adom hozzá
-
-//itt definiálom a harmadik oszlopot 
-const col3 = document.createElement('col');//itt hozom letre a col elemet
-col3.className = "column";//itt adok neki egy className-t 
-colgroup.appendChild(col3);//a colgrouphoz adom hozzá
-
-//A táblázat fejlécének létrehozása
-const thead = document.createElement('thead');//thead elem letrehozasa itt tortenik ez lesz a fejlec
-table.appendChild(thead);//hozzáadom a tablehez
-
-//Itt hozzuk létre a táblázat törzsét
-const tbody = document.createElement('tbody');//létrehozok egy tbody elemet
-table.appendChild(tbody);//hozzáadjuk a tbody-t a table-hez
-
+/**
+ * itt generáljuk le a formunkat ahol az adatot kérjük be
+ *
+ * Az űrlap a következőket tartalmazza:
+ * - Öt címkézett szöveges inputmezőt:
+ *   1. "Uralkodó neve"
+ *   2. "Első esemény"
+ *   3. "Első esemény évszáma"
+ *   4. "Második esemény"
+ *   5. "Második esemény évszáma"
+ * minden inputmezőnek van egy hibaüzenet tárolója ami az 'error' osztályt kapja
+ * van egy gombunk is az űrlap beküldéséhez
+ *
+ * minden inputmezőnek van egy 'field' osztályú divbe van ágyazva
+ */
 function formGenerate(){//formot generáljuk itt
     const form = document.createElement('form');//letrehozunk egy form elemet
     form.id = 'form';//itt adjuk meg neki a classát hogy majd később erre tudjunk hivatkozni
@@ -177,7 +155,45 @@ function formGenerate(){//formot generáljuk itt
 }
 formGenerate();//itt hívom meg a formot generáló függvényt
 
-function CreateHeader(){ //fejlec legeneralasa
+//Itt hozzuk létre a táblázatot
+const table = document.createElement('table');//létrehozok egy table elemet, ami majd a tablazatomat fogja tartalmazni
+document.body.appendChild(table);//Hozzáadom a bodyhoz
+
+//A colgroup elemek szabályozzák a táblázatunk oszlopainak stílusát
+//A colgroup elemet hozzuk it létre
+const colgroup = document.createElement('colgroup');//itt hozom létre a colgroup elemet
+table.appendChild(colgroup);//hozzáadjuk a tablehoz
+
+//itt definiálom az első oszlopot 
+const col1 = document.createElement('col');//itt hozom letre a col elemet
+col1.className = "column";//itt adok neki egy className-t ez alapjan talalja meg a css
+colgroup.appendChild(col1);//a colgrouphoz adom hozzá
+
+//itt definiálom a második oszlopot, nem adok neki semmit mert nem kell semmit megjelenítenie
+const col2 = document.createElement('col');//itt hozom letre a col elemet
+colgroup.appendChild(col2);//a colgrouphoz adom hozzá
+
+//itt definiálom a harmadik oszlopot 
+const col3 = document.createElement('col');//itt hozom letre a col elemet
+col3.className = "column";//itt adok neki egy className-t 
+colgroup.appendChild(col3);//a colgrouphoz adom hozzá
+
+//A táblázat fejlécének létrehozása
+const thead = document.createElement('thead');//thead elem letrehozasa itt tortenik ez lesz a fejlec
+table.appendChild(thead);//hozzáadom a tablehez
+
+//Itt hozzuk létre a táblázat törzsét
+const tbody = document.createElement('tbody');//létrehozok egy tbody elemet
+table.appendChild(tbody);//hozzáadjuk a tbody-t a table-hez
+
+
+/**
+ * a createHeader függvény hozza létre a tábláazat fejlécét
+ * A fejlécet a fejlec tömbből szedi ki és írja ki 
+ * ezen a tömbön iterál végig
+ * az első vagy utolsó oszlophoz 'column' osztályt rendel hozzá hogy jó legyen a css-ünk
+ */
+function createHeader(){ //fejlec legeneralasa
     const fejlec = ["Uralkodó", "Esemény", "Évszám"]; //a fejlec nevű tömbbe eltároljuk az adatokat amik stringek
 
     const headerRow = document.createElement('tr'); //a fejlécnek létrehozok egy sort
@@ -195,6 +211,13 @@ function CreateHeader(){ //fejlec legeneralasa
     }
 }
 
+/**
+ * A rendertable föggvény egy HTML tablazatot generál az array adatai alapján
+ * midnen egyes elemhez új sort hoz létre
+ * ha egy elemhez tartozik második esemeny meg evszam akkor egy új sor jön létre ugyan ahhoz az uralkodohoz (rowSpanoljuk)
+ * 
+ * @param {Array} array A bemeneti tömb ez tartalmazza az adatokat
+ */
 function renderTable(array){//itt definialom a renderTable függvényemet ami bemeneti paraméterként vár egy tömböt
     for (const currentElement of array){//itt iterálunk végig az array tömb elemein és a currentElement lesz az aktuális elem
 
@@ -291,6 +314,15 @@ form.addEventListener('submit', function(e) {//amikor submitolunk akkor hívódi
     }
 });
 
+/**
+ * ez a fuggvény validálja a masodik esemenyt meg a masodik evszamot
+ * csak akkor fut le hogyha az egyik ki van toltve a masik viszont nem
+ * 
+ * @param {HTMLElement} esemeny2 ez tartalmazz a masodik esemenyt
+ * @param {HTMLElement} evszam2 ez tartalmazz a masodik evszamot
+ * @param {string} errormessage itt adjuk meg neki a hibaüzenetet
+ * @returns {boolean} ezzel térünk vissza akkor igaz ha mindkettő ki volt töltve és akkor hamis hogyha csak az egyik
+ */
 function osszetettValidacio(esemeny2, evszam2, errormessage){//bemeneti értéknek kettő htmlelementet adunk neki esemeny2 és evszam2 és egy stringet ami az errormessage
     let valid = true;//megadjuk a valid valtozonak kezdeti értéknek hogy true
     if(esemeny2.value === '' && evszam2.value !== ''){//ez az elágazás csak akkor fut le hogyha a esemény2 mező üres és az évszám2 meg nem
@@ -312,6 +344,14 @@ function osszetettValidacio(esemeny2, evszam2, errormessage){//bemeneti értékn
     return valid;//visszatérünk a valid változonk ertekevel
 }
 
+/**
+ * ha uresek a mezők akkor fut le és hibaüzenetet jelenít meg
+ * akkor hibaüzenetet jelenít meg. A valid változó értéke a sikeres validálásról ad információt.
+ * 
+ * @param {HTMLElement} inputElement erről a html elementről kell eldönteni hogy üres e
+ * @param {string} errormessage ez a hibaüzenetünk amit akkor írunk ki hogyha üres a mező
+ * @returns {boolean} ezzel térünk vissza akkor igaz ha mindkettő ki volt töltve és akkor hamis hogyha csak az egyik
+ */
 function validateFormInputFields(inputElement, errormessage){//itt adjuk meg a validateFormInputFields függvényünknek hogy milyen bemeneti elemet(htmlelement) és hibaüzenetet (string)varunk
         let valid = true;//megadjuk a valid valtozonak kezdeti értéknek hogy true
         if(inputElement.value === ""){//hogyha a bemeneti elem (inputElement) értéke üres akkor
@@ -324,4 +364,4 @@ function validateFormInputFields(inputElement, errormessage){//itt adjuk meg a v
         }
         return valid;//visszatérünk a valid valtozoval ami hamis ha lefutott a validacio és true hogyha volt bele írva 
 }
-CreateHeader();
+createHeader();
