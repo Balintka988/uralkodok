@@ -64,7 +64,7 @@ table.appendChild(thead);//hozzáadom a tablehez
 const tbody = document.createElement('tbody');//létrehozok egy tbody elemet
 table.appendChild(tbody);//hozzáadjuk a tbody-t a table-hez
 
-function formGenerate(){
+function formGenerate(){//formot generáljuk itt
     const form = document.createElement('form');//letrehozunk egy form elemet
     form.id = 'form';//itt adjuk meg neki a classát hogy majd később erre tudjunk hivatkozni
     document.body.appendChild(form);//az űrlapot hozzáadjuk a dokumentumunk törzséhez, bodyhoz
@@ -175,7 +175,7 @@ function formGenerate(){
 
     form.appendChild(button);//hozzáadjuk a gombunkat a formhoz
 }
-formGenerate();
+formGenerate();//itt hívom meg a formot generáló függvényt
 
 function CreateHeader(){ //fejlec legeneralasa
     const fejlec = ["Uralkodó", "Esemény", "Évszám"]; //a fejlec nevű tömbbe eltároljuk az adatokat amik stringek
